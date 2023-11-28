@@ -1,6 +1,8 @@
 # aviator_delivery
 
-A new Flutter project.
+by git : @thmeofan
+linkedind : likedin/in/thmeofan
+mail: adanilchyk.pro@gmail.com
 
 ## Getting Started
 
