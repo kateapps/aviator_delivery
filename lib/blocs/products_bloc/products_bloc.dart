@@ -8,9 +8,10 @@ import 'products_state.dart';
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   ProductsBloc(this.productRepository) : super(LoadingState()) {
     on<FetchDataEvent>(_onFetchData);
-    //  on<AddToCartEvent>(_onSaveToCart);
   }
+
   final ProductRepository productRepository;
+
   Future<void> _onFetchData(
       FetchDataEvent event, Emitter<ProductsState> emit) async {
     emit(LoadingState());

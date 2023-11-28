@@ -5,5 +5,3 @@ class CartCubitState {
 
   CartCubitState(this.cartItems);
 }
-//повесить провайдеры с блоком над экранами, где использ корзина
-//

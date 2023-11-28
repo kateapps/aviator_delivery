@@ -11,6 +11,7 @@ import '../../../data/models/product_model.dart';
 
 class ProductCartWidget extends StatelessWidget {
   const ProductCartWidget({super.key, required this.productModel});
+
   final ProductModel productModel;
 
   @override
@@ -19,7 +20,15 @@ class ProductCartWidget extends StatelessWidget {
     return Container(
       height: 128,
       width: double.maxFinite,
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: AppColors.itemAmountButtonColor,
+            width: 1.0,
+          ),
+        ),
+      ),
       child: Row(
         children: [
           ClipRRect(
@@ -31,7 +40,7 @@ class ProductCartWidget extends StatelessWidget {
               imageUrl: productModel.picture,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
@@ -56,7 +65,7 @@ class ProductCartWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(productModel.price),

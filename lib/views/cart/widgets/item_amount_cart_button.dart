@@ -34,7 +34,7 @@ class ItemAmountCartButton extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
             Text(
@@ -42,7 +42,7 @@ class ItemAmountCartButton extends StatelessWidget {
               style: AppTextStyles
                   .cartItemAmountStyle, // Adjust the font size as needed
             ),
-            SizedBox(
+            const SizedBox(
               width: 16,
             ),
             // Plus button

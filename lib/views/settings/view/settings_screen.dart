@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_text_styles.dart';
 import '../../../util/app_routes.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  const SettingsScreen({
+    super.key,
+  });
+
+  Future<void> _launchURL() async {
+    Uri url = Uri.parse('https://google.com/');
+    if (await canLaunchUrl(url)) {
+      final bool launched = await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication, // Add this line
+      );
+      if (!launched) {
+        throw 'Could not launch $url';
+      }
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +59,8 @@ class SettingsScreen extends StatelessWidget {
                   height: 24.0,
                   color: AppColors.mainTextColor,
                 ),
-                style: ButtonStyle(alignment: Alignment.centerLeft),
-                onPressed: () {},
+                style: const ButtonStyle(alignment: Alignment.centerLeft),
+                onPressed: _launchURL,
                 label: const Text(
                   'Privacy Policy',
                   style: AppTextStyles.itemCardTitleStyle,
@@ -58,8 +76,8 @@ class SettingsScreen extends StatelessWidget {
                 height: 24.0,
                 color: AppColors.mainTextColor,
               ),
-              style: ButtonStyle(alignment: Alignment.centerLeft),
-              onPressed: () {},
+              style: const ButtonStyle(alignment: Alignment.centerLeft),
+              onPressed: _launchURL,
               label: const Text(
                 'Terms of Use',
                 style: AppTextStyles.itemCardTitleStyle,
@@ -74,7 +92,7 @@ class SettingsScreen extends StatelessWidget {
                 height: 24.0,
                 color: AppColors.mainTextColor,
               ),
-              style: ButtonStyle(alignment: Alignment.centerLeft),
+              style: const ButtonStyle(alignment: Alignment.centerLeft),
               onPressed: () {},
               label: const Text(
                 'Rate our app in the AppStore',
@@ -90,8 +108,9 @@ class SettingsScreen extends StatelessWidget {
                 height: 24.0,
                 color: AppColors.mainTextColor,
               ),
-              style: ButtonStyle(alignment: Alignment.centerLeft),
-              onPressed: () {},
+              style: const ButtonStyle(alignment: Alignment.centerLeft),
+              onPressed: () =>
+                  Navigator.pushNamed(context, AppRoutes.myBonuses),
               label: const Text(
                 'My bonuses',
                 style: AppTextStyles.itemCardTitleStyle,
@@ -106,8 +125,11 @@ class SettingsScreen extends StatelessWidget {
                 height: 24.0,
                 color: AppColors.mainTextColor,
               ),
-              style: ButtonStyle(alignment: Alignment.centerLeft),
-              onPressed: () {},
+              style: const ButtonStyle(alignment: Alignment.centerLeft),
+              onPressed: () => Navigator.pushNamed(
+                context,
+                AppRoutes.aboutRestaurant,
+              ),
               label: const Text(
                 'About our restaurant',
                 style: AppTextStyles.itemCardTitleStyle,

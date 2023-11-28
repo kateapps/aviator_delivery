@@ -9,6 +9,7 @@ class ProductRepository {
   factory ProductRepository() {
     return _productRepository;
   }
+
   ProductRepository._internal();
 
   List<ProductModel> _listOfItems = [];

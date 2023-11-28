@@ -8,6 +8,7 @@ import '../../../blocs/cart_cubit/cart_cubit.dart';
 import '../../../blocs/cart_cubit/cart_state.dart';
 import '../../../constants/app_colors.dart';
 import '../../../util/app_routes.dart';
+import '../../../widgets/buttons/chosen_action_button_widget.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -43,13 +44,20 @@ class _CartScreenState extends State<CartScreen> {
       ),
       body: BlocBuilder<CartCubit, CartCubitState>(builder: (context, state) {
         if (state.cartItems.isEmpty) {
-          return Center(
+          return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('You cart is empty'),
+                Text(
+                  'You cart is empty',
+                  style: AppTextStyles.itemCardTitleStyle,
+                ),
                 SizedBox(height: 20),
-                Text('Select products'),
+                Text(
+                  'Select the product you want to order in the "Categories" tab',
+                  style: AppTextStyles.onBoardingScreenAccentStyle,
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
           );
@@ -64,21 +72,45 @@ class _CartScreenState extends State<CartScreen> {
                 );
               },
             )),
+            ChosenActionButton(
+                text: 'Confirm order',
+                onTap: () {
+                  final snackBar = SnackBar(
+                    content: const Text(
+                      'Order confirmed',
+                      style: AppTextStyles.cartItemAmountStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                    backgroundColor: AppColors.itemAmountButtonColor,
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 120.0, vertical: 20),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
-              height: 66,
-              color: AppColors.itemAmountButtonColor,
-              child: Row(
-                children: [
-                  Text('Total amount:'),
-                  Spacer(),
-                  Text(state.cartItems
-                      .map((e) => double.parse(e.price))
-                      .reduce((a, b) => a + b)
-                      .roundToDouble()
-                      .toString()),
-                ],
-              ),
-            )
+                height: 66,
+                color: AppColors.itemAmountButtonColor,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      const Text('Total amount:'),
+                      const Spacer(),
+                      Text(state.cartItems
+                          .map((e) => double.parse(e.price))
+                          .reduce((a, b) => a + b)
+                          .roundToDouble()
+                          .toString()),
+                    ],
+                  ),
+                ))
           ]);
         }
       }),

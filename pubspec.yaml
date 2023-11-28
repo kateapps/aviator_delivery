@@ -48,6 +48,8 @@ dependencies:
     git:
       url: https://github.com/theyakka/qr.flutter.git
   equatable: ^2.0.5
+  url_launcher: ^6.2.1
+  flutter_inappwebview: ^5.8.0
 
 
 dev_dependencies:
@@ -73,13 +75,14 @@ flutter:
     - assets/logo.svg
     - assets/icons/
     - assets/categories/
+    - assets/offers_banner.png
 
-#  fonts:
-#    - family: Montserrat
-#      fonts:
-#        - asset: fonts/Montserrat-Regular.ttf
-#        - asset: fonts/Montserrat-Bold.ttf
-#        - asset: fonts/Montserrat-SemiBold.ttf
+  #  fonts:
+  #    - family: Montserrat
+  #      fonts:
+  #        - asset: fonts/Montserrat-Regular.ttf
+  #        - asset: fonts/Montserrat-Bold.ttf
+  #        - asset: fonts/Montserrat-SemiBold.ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -114,7 +117,7 @@ uses-material-design: true
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+# see https://flutter.dev/custom-fonts/#from-packages
 flutter_native_splash:
   # This package generates native code to customize Flutter's default white native splash screen
   # with background color and splash image.

@@ -12,6 +12,7 @@ import '../../../blocs/search_cubit/search_cubit.dart';
 import '../../../blocs/search_cubit/search_state.dart';
 import '../../../data/models/product_model.dart';
 import '../../../util/app_routes.dart';
+import '../../../widgets/personal_offer_banner.dart';
 import '../widgets/search_bar_widget.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.buttonTextColor,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Category',
           style: AppTextStyles.screenTitleStyle,
         ),
@@ -50,22 +51,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           const SizedBox(
             height: 20,
           ),
-          Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
-                  spreadRadius: 2,
-                  blurRadius: 4,
-                  // changes position of shadow
-                ),
-              ],
-              borderRadius: BorderRadius.circular(25),
-              color: AppColors.mainBackgroundColor,
-            ),
-            width: 360,
-            height: 126,
-          ),
+          const PersonalOfferBanner(),
           Expanded(
             child: BlocBuilder<ProductsBloc, ProductsState>(
               builder: (context, state) {

@@ -10,5 +10,6 @@ class FetchDataEvent extends ProductsEvent {
 
 class AddToCartEvent extends ProductsEvent {
   final List<ProductModel> itemList;
+
   AddToCartEvent(this.itemList);
 }

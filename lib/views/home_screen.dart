@@ -1,7 +1,6 @@
 import 'package:aviator_delivery/util/app_routes.dart';
 import 'package:aviator_delivery/views/settings/view/settings_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -21,9 +20,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
   List<Widget> homeWidgets = [
-    CategoriesScreen(),
-    CartScreen(),
-    SettingsScreen()
+    const CategoriesScreen(),
+    const CartScreen(),
+    const SettingsScreen()
   ];
 
   @override
@@ -53,10 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 BlocBuilder<CartCubit, CartCubitState>(
                     builder: (context, state) {
                   if (state.cartItems.isEmpty) {
-                    return SizedBox.shrink();
+                    return const SizedBox.shrink();
                   } else {
                     return Positioned(
-                      left: 13,
+                      right: 0,
                       child: Container(
                         padding: const EdgeInsets.all(1),
                         decoration: BoxDecoration(

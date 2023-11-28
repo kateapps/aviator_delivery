@@ -9,21 +9,40 @@ import '../../../data/models/product_model.dart';
 
 class OrderButtonWidget extends StatelessWidget {
   const OrderButtonWidget({super.key, required this.productModel});
+
   final ProductModel productModel;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: TextButton.icon(
-            onPressed: () => context.read<CartCubit>().addProduct(productModel),
+            onPressed: () {
+              context.read<CartCubit>().addProduct(productModel);
+              final snackBar = SnackBar(
+                content: const Text(
+                  'Added to cart',
+                  style: AppTextStyles.cartItemAmountStyle,
+                  textAlign: TextAlign.center,
+                ),
+                backgroundColor: AppColors.itemAmountButtonColor,
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
             icon: SvgPicture.asset(
               'assets/icons/shopping-cart.svg',
               width: 24.0,
               height: 24.0,
               color: AppColors.buttonTextColor,
             ),
-            label: Text(
+            label: const Text(
               'Order',
               style: AppTextStyles.textButtonStyle,
             ),
