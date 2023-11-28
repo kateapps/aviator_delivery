@@ -134,4 +134,34 @@ class AppTextStyles {
     letterSpacing: 0.41,
     color: AppColors.mainTextColor,
   );
+  static const TextStyle idNumber = TextStyle(
+      fontFamily: 'Montserrat',
+      fontSize: 14.0,
+      fontWeight: FontWeight.w700,
+      height: 17.0 / 14.0,
+      color: AppColors.mainBackgroundColor);
+
+  static const TextStyle personalBannerStyle = TextStyle(
+    fontFamily: 'Montserrat',
+    fontSize: 20.0,
+    fontWeight: FontWeight.w700,
+    //  height: 43 / 24,
+    letterSpacing: 0.41,
+    color: AppColors.buttonTextColor,
+  );
+  static const TextStyle restaurantDescriptionStyle = TextStyle(
+    fontFamily: 'Montserrat',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w800,
+    height: 17 / 10,
+    letterSpacing: 0.41,
+    color: AppColors.mainTextColor,
+  );
+  static const TextStyle restaurantTitleStyle = TextStyle(
+      fontFamily: 'Montserrat',
+      fontSize: 18.0,
+      fontWeight: FontWeight.w700,
+      height: 17.0 / 14.0,
+      letterSpacing: 0.0,
+      color: AppColors.accentTextColor);
 }

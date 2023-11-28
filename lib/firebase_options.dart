@@ -49,7 +49,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '338431764486',
     projectId: 'aviator-delivery',
     authDomain: 'aviator-delivery.firebaseapp.com',
-    databaseURL: 'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'aviator-delivery.appspot.com',
     measurementId: 'G-RW0H6C15JM',
   );
@@ -59,7 +60,8 @@ class DefaultFirebaseOptions {
     appId: '1:338431764486:android:b878e1e007af23d9fdbb87',
     messagingSenderId: '338431764486',
     projectId: 'aviator-delivery',
-    databaseURL: 'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'aviator-delivery.appspot.com',
   );
 
@@ -68,7 +70,8 @@ class DefaultFirebaseOptions {
     appId: '1:338431764486:ios:853a6aa5dc8556abfdbb87',
     messagingSenderId: '338431764486',
     projectId: 'aviator-delivery',
-    databaseURL: 'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'aviator-delivery.appspot.com',
     iosBundleId: 'com.example.aviatorDelivery',
   );
@@ -78,7 +81,8 @@ class DefaultFirebaseOptions {
     appId: '1:338431764486:ios:4be9b4d0f243e377fdbb87',
     messagingSenderId: '338431764486',
     projectId: 'aviator-delivery',
-    databaseURL: 'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://aviator-delivery-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'aviator-delivery.appspot.com',
     iosBundleId: 'com.example.aviatorDelivery.RunnerTests',
   );

@@ -54,7 +54,7 @@ class _ChosenCategoryScreenState extends State<ChosenCategoryScreen> {
                 state.itemList.where((e) => e.foodType == widget.type).toList();
             return Column(
               children: [
-                SearchBarWidget(),
+                const SearchBarWidget(),
                 Expanded(child: BlocBuilder<SearchCubit, SearchCubitState>(
                   builder: (context, state) {
                     var filteredItems = chosenCategoryItems.where((e) => e.name
