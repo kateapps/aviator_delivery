@@ -25,6 +25,7 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -45,56 +46,58 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          const SearchBarWidget(),
-          const SizedBox(
-            height: 20,
-          ),
-          const PersonalOfferBanner(),
-          Expanded(
-            child: BlocBuilder<ProductsBloc, ProductsState>(
-              builder: (context, state) {
-                if (state is LoadingState) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is HasDataState) {
-                  Map<FoodType, int> categoriesCount = {};
-                  for (var item in state.itemList) {
-                    if (categoriesCount[item.foodType] == null) {
-                      categoriesCount[item.foodType] = 1;
-                    } else {
-                      categoriesCount[item.foodType] =
-                          categoriesCount[item.foodType]! + 1;
-                    }
-                  }
-
-                  return BlocBuilder<SearchCubit, SearchCubitState>(
-                    builder: (context, state) {
-                      var filteredCategories = FoodType.values.where((e) => e
-                          .name
-                          .toLowerCase()
-                          .contains(state.search.toLowerCase()));
-                      return GridView.count(
-                        crossAxisCount: 2,
-                        children: [
-                          for (var type in filteredCategories)
-                            CategoryWidget(
-                              type: type,
-                              amount: categoriesCount[type]!,
-                            )
-                        ],
-                      );
-                    },
-                  );
-                } else {
-                  return Container();
-                }
-              },
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SearchBarWidget(),
+            SizedBox(
+              height: screenSize.height * 0.02,
             ),
-          )
-        ],
+            const PersonalOfferBanner(),
+            Expanded(
+              child: BlocBuilder<ProductsBloc, ProductsState>(
+                builder: (context, state) {
+                  if (state is LoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is HasDataState) {
+                    Map<FoodType, int> categoriesCount = {};
+                    for (var item in state.itemList) {
+                      if (categoriesCount[item.foodType] == null) {
+                        categoriesCount[item.foodType] = 1;
+                      } else {
+                        categoriesCount[item.foodType] =
+                            categoriesCount[item.foodType]! + 1;
+                      }
+                    }
+
+                    return BlocBuilder<SearchCubit, SearchCubitState>(
+                      builder: (context, state) {
+                        var filteredCategories = FoodType.values.where((e) => e
+                            .name
+                            .toLowerCase()
+                            .contains(state.search.toLowerCase()));
+                        return GridView.count(
+                          crossAxisCount: 2,
+                          children: [
+                            for (var type in filteredCategories)
+                              CategoryWidget(
+                                type: type,
+                                amount: categoriesCount[type]!,
+                              )
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

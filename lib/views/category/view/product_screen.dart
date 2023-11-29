@@ -20,93 +20,93 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: SvgPicture.asset(
-            'assets/icons/chevron-left.svg',
-            width: 24.0,
-            height: 24.0,
+    Size size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: SvgPicture.asset(
+              'assets/icons/chevron-left.svg',
+              width: 24.0,
+              height: 24.0,
+            ),
           ),
         ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FancyShimmerImage(
-            width: double.infinity,
-            boxFit: BoxFit.cover,
-            imageUrl: widget.productModel.picture,
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.productModel.name,
-                    style: AppTextStyles.menuItemScreenTitleStyle,
-                    textAlign: TextAlign.start,
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        widget.productModel.price,
-                        style: AppTextStyles.menuItemScreenPriceStyle,
-                      ),
-                      const Spacer(),
-                      Container(
-                        width: 106.0,
-                        height: 35.0,
-                        padding: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: AppColors.accentButtonColor,
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        child: const Center(
-                          child: Text('~ 600 gr/piece',
-                              style: AppTextStyles
-                                  .menuItemScreenAccentButtonStyle),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  const Divider(),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Text(widget.productModel.description,
-                          style: AppTextStyles.menuItemDescriptionStyle),
-                    ),
-                  ),
-                  OrderButtonWidget(
-                    productModel: widget.productModel,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
-              ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FancyShimmerImage(
+              width: double.infinity,
+              boxFit: BoxFit.cover,
+              imageUrl: widget.productModel.picture,
             ),
-          )
-        ],
+            SizedBox(
+              height: size.width * 0.05,
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(size.width * 0.04),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.productModel.name,
+                      style: AppTextStyles.menuItemScreenTitleStyle,
+                      textAlign: TextAlign.start,
+                    ),
+                    SizedBox(
+                      height: size.width * 0.05,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          widget.productModel.price,
+                          style: AppTextStyles.menuItemScreenPriceStyle,
+                        ),
+                        const Spacer(),
+                        Container(
+                          width: size.width * 0.3,
+                          height: size.width * 0.1,
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: AppColors.accentButtonColor,
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          child: const Center(
+                            child: Text('~ 600 gr/piece',
+                                style: AppTextStyles
+                                    .menuItemScreenAccentButtonStyle),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: size.width * 0.1,
+                    ),
+                    const Divider(),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Text(widget.productModel.description,
+                            style: AppTextStyles.menuItemDescriptionStyle),
+                      ),
+                    ),
+                    OrderButtonWidget(
+                      productModel: widget.productModel,
+                    ),
+                    SizedBox(
+                      height: size.width * 0.04,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

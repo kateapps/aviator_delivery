@@ -43,38 +43,42 @@ class _ChosenCategoryScreenState extends State<ChosenCategoryScreen> {
           ),
         ),
       ),
-      body: BlocBuilder<ProductsBloc, ProductsState>(
-        builder: (context, state) {
-          if (state is LoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is HasDataState) {
-            List<ProductModel> chosenCategoryItems =
-                state.itemList.where((e) => e.foodType == widget.type).toList();
-            return Column(
-              children: [
-                const SearchBarWidget(),
-                Expanded(child: BlocBuilder<SearchCubit, SearchCubitState>(
-                  builder: (context, state) {
-                    var filteredItems = chosenCategoryItems.where((e) => e.name
-                        .toLowerCase()
-                        .contains(state.search.toLowerCase()));
-                    return ListView.builder(
-                      itemCount: filteredItems.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ProductMenuWidget(
-                            productModel: filteredItems.elementAt(index));
-                      },
-                    );
-                  },
-                )),
-              ],
-            );
-          } else {
-            return Container();
-          }
-        },
+      body: SafeArea(
+        child: BlocBuilder<ProductsBloc, ProductsState>(
+          builder: (context, state) {
+            if (state is LoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is HasDataState) {
+              List<ProductModel> chosenCategoryItems = state.itemList
+                  .where((e) => e.foodType == widget.type)
+                  .toList();
+              return Column(
+                children: [
+                  const SearchBarWidget(),
+                  Expanded(child: BlocBuilder<SearchCubit, SearchCubitState>(
+                    builder: (context, state) {
+                      var filteredItems = chosenCategoryItems.where((e) => e
+                          .name
+                          .toLowerCase()
+                          .contains(state.search.toLowerCase()));
+                      return ListView.builder(
+                        itemCount: filteredItems.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ProductMenuWidget(
+                              productModel: filteredItems.elementAt(index));
+                        },
+                      );
+                    },
+                  )),
+                ],
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }

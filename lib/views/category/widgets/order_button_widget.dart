@@ -14,6 +14,7 @@ class OrderButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Row(
       children: [
         Expanded(
@@ -45,6 +46,7 @@ class OrderButtonWidget extends StatelessWidget {
             label: const Text(
               'Order',
               style: AppTextStyles.textButtonStyle,
+              textAlign: TextAlign.center,
             ),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
@@ -52,7 +54,8 @@ class OrderButtonWidget extends StatelessWidget {
               padding: MaterialStateProperty.all<EdgeInsets>(
                   const EdgeInsets.only(
                       top: 18, right: 100.5, bottom: 18, left: 99.5)),
-              minimumSize: MaterialStateProperty.all<Size>(const Size(297, 56)),
+              minimumSize: MaterialStateProperty.all<Size>(
+                  Size(size.height * 0.3, size.width * 0.15)),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),

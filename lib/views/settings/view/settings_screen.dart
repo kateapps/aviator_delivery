@@ -16,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
     if (await canLaunchUrl(url)) {
       final bool launched = await launchUrl(
         url,
-        mode: LaunchMode.externalApplication, // Add this line
+        mode: LaunchMode.externalApplication,
       );
       if (!launched) {
         throw 'Could not launch $url';

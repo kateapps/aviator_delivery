@@ -39,8 +39,7 @@ class ItemAmountCartButton extends StatelessWidget {
             ),
             Text(
               '$amount',
-              style: AppTextStyles
-                  .cartItemAmountStyle, // Adjust the font size as needed
+              style: AppTextStyles.cartItemAmountStyle,
             ),
             const SizedBox(
               width: 16,
@@ -50,7 +49,7 @@ class ItemAmountCartButton extends StatelessWidget {
               onTap: () => context.read<CartCubit>().addProduct(productModel),
               child: CircleAvatar(
                 backgroundColor: AppColors.itemAmountButtonColor,
-                radius: 11, // Adjust the size of the circle as needed
+                radius: 11,
                 child: SvgPicture.asset(
                   'assets/icons/plus.svg',
                   width: 10.0,

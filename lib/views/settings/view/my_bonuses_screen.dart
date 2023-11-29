@@ -11,6 +11,7 @@ class MyBonusesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.buttonTextColor,
@@ -32,8 +33,8 @@ class MyBonusesScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: size.width * 0.05,
           ),
           const Padding(
             padding: EdgeInsets.all(10.0),
@@ -55,8 +56,8 @@ class MyBonusesScreen extends StatelessWidget {
           ChosenActionButton(
               text: 'Scan QR',
               onTap: () => Navigator.pushNamed(context, AppRoutes.qrScreen)),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: size.width * 0.08,
           ),
         ],
       ),
