@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../blocs/cart_cubit/cart_cubit.dart';
 import '../../../constants/app_colors.dart';
+import '../../../constants/app_text_styles.dart';
 import '../../../data/models/product_model.dart';
 
 class ProductCartWidget extends StatelessWidget {
@@ -16,11 +17,13 @@ class ProductCartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.of(context).size;
     return Container(
-      height: 128,
+      height: screenSize.height * 0.18,
       width: double.maxFinite,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: EdgeInsets.symmetric(
+          vertical: screenSize.height * 0.02,
+          horizontal: screenSize.width * 0.04),
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(
@@ -34,8 +37,8 @@ class ProductCartWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(15.0),
             child: FancyShimmerImage(
-              height: 128,
-              width: 157,
+              height: screenSize.height * 0.3,
+              width: screenSize.width * 0.4,
               boxFit: BoxFit.cover,
               imageUrl: productModel.picture,
             ),
@@ -49,7 +52,11 @@ class ProductCartWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Expanded(child: Text(productModel.name)),
+                    Expanded(
+                        child: Text(
+                      productModel.name,
+                      style: AppTextStyles.cartItemTitleStyle,
+                    )),
                     GestureDetector(
                       onTap: () =>
                           context.read<CartCubit>().removeProduct(productModel),
@@ -58,8 +65,8 @@ class ProductCartWidget extends StatelessWidget {
                         radius: 9.5,
                         child: SvgPicture.asset(
                           'assets/icons/x.svg',
-                          width: 6.33,
-                          height: 6.33,
+                          width: 12,
+                          height: 12,
                         ),
                       ),
                     ),
@@ -68,7 +75,10 @@ class ProductCartWidget extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Text(productModel.price),
+                Text(
+                  productModel.price,
+                  style: AppTextStyles.cartItemPriceStyle,
+                ),
                 const Spacer(),
                 ItemAmountCartButton(
                   productModel: productModel,

@@ -14,6 +14,7 @@ class QRScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.buttonTextColor,
@@ -54,32 +55,32 @@ class QRScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: size.height * 0.05,
             ),
             const Text(
               'Personal bonus card',
               style: AppTextStyles.menuItemDescriptionStyle,
             ),
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: size.height * 0.05,
             ),
             Text(
               qrData.toString(),
               style: AppTextStyles.idNumber,
             ),
-            const SizedBox(
-              height: 80,
+            SizedBox(
+              height: size.height * 0.1,
             ),
             Center(
               child: QrImageView(
                 data: qrData.toString(),
                 version: QrVersions.auto,
-                size: 200.0,
+                size: size.height * 0.3,
               ),
             ),
-            const SizedBox(
-              height: 50,
+            SizedBox(
+              height: size.height * 0.07,
             ),
             const Text(
               'Scan the QR code to get your bonus points',
@@ -87,9 +88,9 @@ class QRScreen extends StatelessWidget {
             ),
             const Spacer(),
             ChosenActionButton(text: 'My personal offers', onTap: () {}),
-            const SizedBox(
-              height: 20,
-            )
+            SizedBox(
+              height: size.width * 0.08,
+            ),
           ],
         ));
   }

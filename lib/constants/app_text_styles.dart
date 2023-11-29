@@ -151,7 +151,7 @@ class AppTextStyles {
   );
   static const TextStyle restaurantDescriptionStyle = TextStyle(
     fontFamily: 'Montserrat',
-    fontSize: 12.0,
+    fontSize: 10.0,
     fontWeight: FontWeight.w800,
     height: 17 / 10,
     letterSpacing: 0.41,
@@ -159,7 +159,7 @@ class AppTextStyles {
   );
   static const TextStyle restaurantTitleStyle = TextStyle(
       fontFamily: 'Montserrat',
-      fontSize: 18.0,
+      fontSize: 14.0,
       fontWeight: FontWeight.w700,
       height: 17.0 / 14.0,
       letterSpacing: 0.0,

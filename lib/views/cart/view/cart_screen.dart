@@ -20,59 +20,63 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.buttonTextColor,
-        elevation: 0,
-        title: Text(
-          'My order',
-          style: AppTextStyles.screenTitleStyle,
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: SvgPicture.asset(
-              'assets/icons/21-san.svg',
-              width: 24.0,
-              height: 24.0,
-            ),
-            onPressed: () => Navigator.pushNamed(
-              context,
-              AppRoutes.qrScreen,
-            ),
+    final screenSize = MediaQuery.of(context).size;
+
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.buttonTextColor,
+          elevation: 0,
+          title: const Text(
+            'My order',
+            style: AppTextStyles.screenTitleStyle,
           ),
-        ],
-      ),
-      body: BlocBuilder<CartCubit, CartCubitState>(builder: (context, state) {
-        if (state.cartItems.isEmpty) {
-          return const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'You cart is empty',
-                  style: AppTextStyles.itemCardTitleStyle,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Select the product you want to order in the "Categories" tab',
-                  style: AppTextStyles.onBoardingScreenAccentStyle,
-                  textAlign: TextAlign.center,
-                ),
-              ],
+          actions: <Widget>[
+            IconButton(
+              icon: SvgPicture.asset(
+                'assets/icons/21-san.svg',
+                width: 24.0,
+                height: 24.0,
+              ),
+              onPressed: () => Navigator.pushNamed(
+                context,
+                AppRoutes.qrScreen,
+              ),
             ),
-          );
-        } else {
-          return Column(children: [
-            Expanded(
+          ],
+        ),
+        body: BlocBuilder<CartCubit, CartCubitState>(builder: (context, state) {
+          if (state.cartItems.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'You cart is empty',
+                    style: AppTextStyles.itemCardTitleStyle,
+                  ),
+                  SizedBox(height: screenSize.height * 0.02),
+                  const Text(
+                    'Select the product you want to order in the "Categories" tab',
+                    style: AppTextStyles.onBoardingScreenAccentStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return Column(children: [
+              Expanded(
                 child: ListView.builder(
-              itemCount: state.cartItems.toSet().length,
-              itemBuilder: (BuildContext context, int index) {
-                return ProductCartWidget(
-                  productModel: state.cartItems.toSet().elementAt(index),
-                );
-              },
-            )),
-            ChosenActionButton(
+                  itemCount: state.cartItems.toSet().length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ProductCartWidget(
+                      productModel: state.cartItems.toSet().elementAt(index),
+                    );
+                  },
+                ),
+              ),
+              ChosenActionButton(
                 text: 'Confirm order',
                 onTap: () {
                   final snackBar = SnackBar(
@@ -86,19 +90,23 @@ class _CartScreenState extends State<CartScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24.0),
                     ),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 120.0, vertical: 20),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: screenSize.width * 0.2,
+                      vertical: 20,
+                    ),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
+                },
+              ),
+              SizedBox(
+                height: screenSize.height * 0.02,
+              ),
+              Container(
                 height: 66,
                 color: AppColors.itemAmountButtonColor,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: screenSize.width * 0.05),
                   child: Row(
                     children: [
                       const Text('Total amount:'),
@@ -110,10 +118,12 @@ class _CartScreenState extends State<CartScreen> {
                           .toString()),
                     ],
                   ),
-                ))
-          ]);
-        }
-      }),
+                ),
+              )
+            ]);
+          }
+        }),
+      ),
     );
   }
 }

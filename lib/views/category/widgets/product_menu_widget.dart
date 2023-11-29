@@ -3,7 +3,6 @@ import 'package:aviator_delivery/util/app_routes.dart';
 import 'package:aviator_delivery/views/category/widgets/order_icon_button.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../data/models/product_model.dart';
 
@@ -25,21 +24,22 @@ class ProductMenuWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: FancyShimmerImage(
-                height: 127,
-                width: 157,
+                height: size.height * 0.15,
+                width: size.width * 0.4,
                 boxDecoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(30)),
                 boxFit: BoxFit.cover,
                 imageUrl: productModel.picture,
               ),
             ),
-            SizedBox(width: 8),
+            SizedBox(width: size.width * 0.02),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(productModel.name,
                       style: AppTextStyles.cartItemPriceStyle),
+                  SizedBox(height: size.width * 0.1),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -17,9 +17,10 @@ class OrderIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartCubitState>(
       builder: (context, state) {
+        Size size = MediaQuery.of(context).size;
         return SizedBox(
-          width: 78,
-          height: 45,
+          width: size.width * 0.2,
+          height: size.height * 0.055,
           child: ElevatedButton(
             onPressed: () {
               context.read<CartCubit>().addProduct(productModel);
